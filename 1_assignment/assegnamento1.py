@@ -16,9 +16,23 @@ def process(file_path):
     
 	#Display it's correctly reading the file:
     logging.info("Reading input file %s...", file_path)
-    #The following opens the file by taking the file_path:
+
+	'''
+	#Try to open the file from line 8526 but failed..
+    if args.sk:
+    	with open(file_path) as input_file:
+    		for line in range(8526):
+    			text = input_file.readline(line)
+    			print(text)
+    			line += 1
+    else:
+    	with open(file_path) as input_file:					
+    		text = input_file.read()
+    '''
+    
+    #Correct version to open file:
     with open(file_path) as input_file:					
-        text = input_file.read()
+    text = input_file.read()
     
     num_chars = len(text)
     logging.info("Done, %d characters found.", num_chars)
@@ -36,7 +50,7 @@ def process(file_path):
         #Implements the counter for obtaining frequencies. If the ch-key appears in dict --> 
         # ---> increments the VALUE related to CH-KEY:
         if ch in char_dict:
-            char_dict[ch] += 1
+           		char_dict[ch] += 1
             
         #Another way to do it (not so obvious..):
         # try:
@@ -61,10 +75,11 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument('infile', type=str, help="Path to the input file")
+    parser.add_argument('--sk', action='store_true',help='Skip preamble')
     args = parser.parse_args()
 
     process(args.infile)
-    #print(args.infile)
+
     
     
     
