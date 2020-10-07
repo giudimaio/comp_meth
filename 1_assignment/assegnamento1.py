@@ -6,6 +6,7 @@ import logging
 import time
 import string
 
+#...Setting the basic level...
 logging.basicConfig(level=logging.DEBUG)
 
 #Define a function which needs the file path (or simply file name if it is in the same dir):
@@ -24,11 +25,11 @@ def process(file_path):
 
 	#Create a dict.
     #The syntax for dict is {key:value} with key variable in this case (ch represents the character in ascii string). 
-    #string.ascii gives a string 'abcdefgh...', while '0' stands for the value I want to associate to the keys 'a', 'b',
-    #.....
+    #string.ascii gives a string 'abcdefgh...', while '0' stands for the value I want to associate to the keys 'a', 'b',... So I am initializing 0 for all keys
+
     char_dict = {ch: 0 for ch in string.ascii_lowercase}
 
-	#Takes the ch-key of the input text:
+	#Go inside the input file:
     for ch in text:
     	#.lower() converts all uppercases to lowercases, for example 'A' ---> 'a':
         ch = ch.lower()
@@ -49,8 +50,7 @@ def process(file_path):
     
     #Sum the letters (VALUES IN DICT) to find the total number of letters (not characters!):
     num_letters = sum(char_dict.values())
-    #Go inside the dict {ch:num} and divide the num (frequency for 'a', for example) by total number, for
-    # having the percent:
+    #Go inside the dict {ch:num} and divide the num (frequency for 'a', for example) by total number, for having the percent:
     for ch, num in char_dict.items():
     	#.....I dont understand the purpose of f inside print.....
         print(f"{ch} -> {num / num_letters:.3%}")
